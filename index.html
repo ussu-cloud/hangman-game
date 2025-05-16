@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Игра "виселица"</title>
+</head>
+
+<body>
+
+  <script>
+    // массив слов
+    let words = [
+      "программа",
+      "макака",
+      "прекрасный",
+      "оладушек"
+    ]
+
+    // случайное слово
+    let word = words[Math.floor(Math.random() * words.length)]
+
+    // итоговый массив
+    let answerArray = []
+    for (let i = 0; i < word.length; i++) {
+      answerArray[i] = '_'
+    }
+
+    let remainingLetters = word.length
+
+    // игровой цикл
+    while (remainingLetters > 0) {
+      // показываем состояние игры
+      alert(answerArray.join(" "))
+      // запрашиваем вариант ответа
+      let guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры.");
+      if (guess === null) {
+        // выходим из игрового цикла
+        break;
+      } else if (guess.length !== 1) {
+        alert("Пожалуйста, введите только одну букву.");
+      } else {
+        // обновляем состояние игры
+        for (var j = 0; j < word.length; j++) {
+          if (word[j] === guess) {
+            answerArray[j] = guess;
+            remainingLetters--;
+          }
+        }
+      }
+      // конец игрового цикла
+    }
+
+    // отображаем ответ и поздравляем игрока
+    alert(answerArray.join(" "));
+    alert("Вы выиграли! Было загадано слово " + word.toUpperCase());
+  </script>
+</body>
+
+</html>
